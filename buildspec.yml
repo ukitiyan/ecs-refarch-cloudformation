@@ -10,11 +10,11 @@ phases:
 
   pre_build: 
     commands:
-
-      # Validate all of the CloudFormation templates
+      - sed -i -e "s/ecs-refarch-cloudformation/${S3_BUCKET}/g" ./master.yaml
+     # Validate all of the CloudFormation templates
       - chmod a+x ./tests/validate-templates.sh
       - ./tests/validate-templates.sh
-
+ 
   build:
     commands:
       - echo ${S3_BUCKET}
