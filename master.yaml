@@ -49,13 +49,9 @@ Resources:
     ECS:
         Type: AWS::CloudFormation::Stack
         Properties:
-            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/ecs-cluster.yaml
+            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/ecs-cluster-fargate.yaml
             Parameters:
                 EnvironmentName: !Ref AWS::StackName
-                InstanceType: t2.large
-                ClusterSize: 4
-                VPC: !GetAtt VPC.Outputs.VPC
-                SecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
                 Subnets: !GetAtt VPC.Outputs.PrivateSubnets
 
     ProductService:
@@ -68,6 +64,10 @@ Resources:
                 DesiredCount: 2
                 Listener: !GetAtt ALB.Outputs.Listener 
                 Path: /products
+                ServiceSecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
+                Subnets: !GetAtt VPC.Outputs.PrivateSubnets
+                TaskRole: !GetAtt ECS.Outputs.ECSProductTaskRole
+                ECSTaskExecutionRole: !GetAtt ECS.Output.ECSTaskExecutionRole
 
     WebsiteService:
         Type: AWS::CloudFormation::Stack
@@ -81,6 +81,10 @@ Resources:
                 Listener: !GetAtt ALB.Outputs.Listener 
                 Path: /
                 ECSServiceAutoScalingRoleARN: !GetAtt ECS.Outputs.ECSServiceAutoScalingRole
+                ServiceSecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
+                Subnets: !GetAtt VPC.Outputs.PrivateSubnets
+                TaskRole: !GetAtt ECS.Outputs.ECSWebsiteTaskRole
+                ECSTaskExecutionRole: !GetAtt ECS.Output.ECSTaskExecutionRole
 
     LifecycleHook:
         Type: AWS::CloudFormation::Stack
