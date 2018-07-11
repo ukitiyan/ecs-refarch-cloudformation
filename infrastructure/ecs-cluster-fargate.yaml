@@ -101,7 +101,6 @@ Resources:
 
     ECSProductTaskRole:
         Type: AWS::IAM::Role
-        DependsOn: ECSUserinfoTaskRole
         Properties:
             RoleName: !Sub ecs-genre-task-role-${AWS::StackName}
             Path: /
@@ -117,7 +116,6 @@ Resources:
 
     ECSWebsiteTaskRole:
         Type: AWS::IAM::Role
-        DependsOn: ECSUserinfoTaskRole
         Properties:
             RoleName: !Sub ecs-genre-task-role-${AWS::StackName}
             Path: /
