@@ -86,19 +86,19 @@ Resources:
                 Policies:
                 - PolicyName: AmazonECSTaskExecutionRolePolicy
                     PolicyDocument:
-                    Statement:
-                    - Effect: Allow
-                        Action:
-                        # Allow the ECS Tasks to download images from ECR
-                        - 'ecr:GetAuthorizationToken'
-                        - 'ecr:BatchCheckLayerAvailability'
-                        - 'ecr:GetDownloadUrlForLayer'
-                        - 'ecr:BatchGetImage'
+                        Statement:
+                        - Effect: Allow
+                          Action:
+                          # Allow the ECS Tasks to download images from ECR
+                          - 'ecr:GetAuthorizationToken'
+                          - 'ecr:BatchCheckLayerAvailability'
+                          - 'ecr:GetDownloadUrlForLayer'
+                          - 'ecr:BatchGetImage'
 
-                        # Allow the ECS tasks to upload logs to CloudWatch
-                        - 'logs:CreateLogStream'
-                        - 'logs:PutLogEvents'
-                        Resource: '*'
+                          # Allow the ECS tasks to upload logs to CloudWatch
+                          - 'logs:CreateLogStream'
+                          - 'logs:PutLogEvents'
+                          Resource: '*'
 
     ECSProductTaskRole:
         Type: AWS::IAM::Role
