@@ -79,9 +79,9 @@ Resources:
             AssumeRolePolicyDocument:
                 Statement:
                 - Effect: Allow
-                    Principal:
+                  Principal:
                     Service: [ecs-tasks.amazonaws.com]
-                    Action: ['sts:AssumeRole']
+                  Action: ['sts:AssumeRole']
                 Path: /
                 Policies:
                 - PolicyName: AmazonECSTaskExecutionRolePolicy
