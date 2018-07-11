@@ -19,60 +19,6 @@ Resources:
         Properties:
             ClusterName: !Ref EnvironmentName
 
-    ECSAutoScalingGroup:
-        Type: AWS::AutoScaling::AutoScalingGroup
-        Properties:
-            VPCZoneIdentifier: !Ref Subnets
-            LaunchConfigurationName: !Ref ECSLaunchConfiguration
-            MinSize: !Ref ClusterSize
-            MaxSize: !Ref ClusterSize
-            DesiredCapacity: !Ref ClusterSize
-            Tags:
-                - Key: Name
-                  Value: !Sub ${EnvironmentName} ECS host
-                  PropagateAtLaunch: true
-        CreationPolicy:
-            ResourceSignal:
-                Timeout: PT15M
-        UpdatePolicy:
-            AutoScalingRollingUpdate:
-                MinInstancesInService: 1
-                MaxBatchSize: 1
-                PauseTime: PT15M
-                SuspendProcesses:
-                  - HealthCheck
-                  - ReplaceUnhealthy
-                  - AZRebalance
-                  - AlarmNotification
-                  - ScheduledActions
-                WaitOnResourceSignals: true
-
-    ECSServiceAutoScalingRole:
-        Type: AWS::IAM::Role
-        Properties:
-            AssumeRolePolicyDocument:
-                Version: '2012-10-17'
-                Statement:
-                    Action:
-                    - 'sts:AssumeRole'
-                    Effect: Allow
-                    Principal:
-                        Service:
-                        - application-autoscaling.amazonaws.com
-            Path: /
-            Policies:
-            - PolicyName: ecs-service-autoscaling
-              PolicyDocument:
-                  Statement:
-                      Effect: Allow
-                      Action:
-                      - application-autoscaling:*
-                      - cloudwatch:DescribeAlarms
-                      - cloudwatch:PutMetricAlarm
-                      - ecs:DescribeServices
-                      - ecs:UpdateService
-                      Resource: "*"
-
     ECSTaskExecutionRole:
         Type: AWS::IAM::Role
         Properties:

@@ -86,13 +86,13 @@ Resources:
                 TaskRole: !GetAtt ECS.Outputs.ECSWebsiteTaskRole
                 ECSTaskExecutionRole: !GetAtt ECS.Outputs.ECSTaskExecutionRole
 
-    LifecycleHook:
-        Type: AWS::CloudFormation::Stack
-        Properties:
-            TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/lifecyclehook.yaml
-            Parameters:
-                Cluster: !GetAtt ECS.Outputs.Cluster
-                ECSAutoScalingGroupName: !GetAtt ECS.Outputs.ECSAutoScalingGroupName
+    # LifecycleHook:
+    #     Type: AWS::CloudFormation::Stack
+    #     Properties:
+    #         TemplateURL: https://s3.amazonaws.com/ecs-refarch-cloudformation/infrastructure/lifecyclehook.yaml
+    #         Parameters:
+    #             Cluster: !GetAtt ECS.Outputs.Cluster
+    #             ECSAutoScalingGroupName: !GetAtt ECS.Outputs.ECSAutoScalingGroupName
 
 Outputs:
 
