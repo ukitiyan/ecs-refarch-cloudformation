@@ -132,7 +132,6 @@ Resources:
             HealthCheckTimeoutSeconds: 5
             HealthyThresholdCount: 2
             TargetType: ip
-            VpcId: !Ref VPC
 
     ListenerRule:
         Type: AWS::ElasticLoadBalancingV2::ListenerRule
