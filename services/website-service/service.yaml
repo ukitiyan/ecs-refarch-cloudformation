@@ -88,7 +88,8 @@ Resources:
                 - Name: website-service
                   Essential: true
                   Image: 275396840892.dkr.ecr.us-east-1.amazonaws.com/ecs-refarch-cloudformation/website-service:1.0.0
-                  Memory: 128
+                  Cpu: 256
+                  Memory: 512
                   Environment: 
                     - Name: PRODUCT_SERVICE_URL
                       Value: !Ref ProductServiceUrl

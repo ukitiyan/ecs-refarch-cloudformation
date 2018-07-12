@@ -74,7 +74,8 @@ Resources:
                 - Name: product-service
                   Essential: true
                   Image: 275396840892.dkr.ecr.us-east-1.amazonaws.com/ecs-refarch-cloudformation/product-service:1.0.0
-                  Memory: 128
+                  Cpu: 256
+                  Memory: 512
                   PortMappings:
                     - ContainerPort: 8001
                   LogConfiguration:
