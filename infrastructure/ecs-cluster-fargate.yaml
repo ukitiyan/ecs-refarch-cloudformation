@@ -74,7 +74,7 @@ Resources:
     ECSProductTaskRole:
         Type: AWS::IAM::Role
         Properties:
-            RoleName: !Sub ecs-genre-task-role-${AWS::StackName}
+            RoleName: !Sub ecs-product-task-role-${AWS::StackName}
             Path: /
             AssumeRolePolicyDocument:
                 Version: '2012-10-17'
@@ -89,7 +89,7 @@ Resources:
     ECSWebsiteTaskRole:
         Type: AWS::IAM::Role
         Properties:
-            RoleName: !Sub ecs-genre-task-role-${AWS::StackName}
+            RoleName: !Sub ecs-website-task-role-${AWS::StackName}
             Path: /
             AssumeRolePolicyDocument:
                 Version: '2012-10-17'
