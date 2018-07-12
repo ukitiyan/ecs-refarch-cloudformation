@@ -67,7 +67,7 @@ Resources:
                 ServiceSecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
                 Subnets: !GetAtt VPC.Outputs.PrivateSubnets
                 TaskRole: !GetAtt ECS.Outputs.ECSProductTaskRole
-                ECSTaskExecutionRole: !GetAtt ECS.Outputs.ECSTaskExecutionRole
+                ExecutionRole: !GetAtt ECS.Outputs.ECSTaskExecutionRole
 
     WebsiteService:
         Type: AWS::CloudFormation::Stack
@@ -84,7 +84,7 @@ Resources:
                 ServiceSecurityGroup: !GetAtt SecurityGroups.Outputs.ECSHostSecurityGroup
                 Subnets: !GetAtt VPC.Outputs.PrivateSubnets
                 TaskRole: !GetAtt ECS.Outputs.ECSWebsiteTaskRole
-                ECSTaskExecutionRole: !GetAtt ECS.Outputs.ECSTaskExecutionRole
+                ExecutionRole: !GetAtt ECS.Outputs.ECSTaskExecutionRole
 
     # LifecycleHook:
     #     Type: AWS::CloudFormation::Stack
