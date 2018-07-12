@@ -82,6 +82,7 @@ Resources:
                     Options:
                         awslogs-group: !Ref AWS::StackName
                         awslogs-region: !Ref AWS::Region
+                        awslogs-stream-prefix: product-service
             TaskRoleArn:
                 Fn::If:
                 - 'HasCustomTaskRole'
